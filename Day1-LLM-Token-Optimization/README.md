@@ -2,6 +2,8 @@
 
 > A one-page summary of the Day 1 PDFs. The detail is in each PDF.
 
+🎓 **Completed:** *LLM Token Optimization: Enterprise Cost & Performance* (Udemy · Learnsector LLP · 1.5 hrs) · Sept 24, 2026 · [Certificate PDF](Udemy-LLM-token-optimization.pdf) · [Verify](https://ude.my/UC-357e3191-e60a-4a5d-9ec9-0d6bece4d28d)
+
 | # | Topic | PDF |
 |---|---|---|
 | 1 | Token Economics & Cost of Scale | [Section 1](Section+1+Token+Economics+and+the+Cost+of+Scale.pdf) |
@@ -10,6 +12,7 @@
 | 4 | Semantic Caching | [Section 4](Section+4+Semantic+Caching+for+Redundancy+Reduction.pdf) |
 | 5 | Dynamic Model Routing & Orchestration | [Section 5](Section+5+Dynamic+Model+Routing+and+Orchestration.pdf) |
 | ★ | Pricing Matrix & ROI Calculator | [Reference](LLM+Token+Pricing+and+ROI+Calculator.pdf) |
+| 🎓 | Certificate of Completion | [Certificate](Udemy-LLM-token-optimization.pdf) |
 
 ---
 
