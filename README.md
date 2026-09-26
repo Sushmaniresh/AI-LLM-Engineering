@@ -5,7 +5,7 @@ Notes and materials on LLM engineering.
 ## Contents
 
 - **[Day1-LLM-Token-Optimization](Day1-LLM-Token-Optimization/)** ([cheatsheet](Day1-LLM-Token-Optimization/README.md)) — token economics, prompt compression, context compaction, semantic caching, and dynamic model routing, plus a pricing & ROI calculator reference.
-- **[Day2-AI-Builder-n8n](Day2-AI-Builder-n8n/)** ([notes](Day2-AI-Builder-n8n/README.md)) — building AI agents and voice agents with n8n *(in progress)*.
+- **[Day2-AI-Builder-n8n](Day2-AI-Builder-n8n/)** ([notes](Day2-AI-Builder-n8n/README.md)) — 3-week track: n8n workflows → voice agents & RAG → multi-agent systems & MCP *(in progress: Week 1)*.
 
 ## Certificates
 
