@@ -12,7 +12,7 @@
 Legend: 🟪 Core skills · 🟨 Integrations · 🟦 Projects
 
 ### Week 1 — Automate with workflows in n8n cloud
-- [ ] 🟪 First n8n AI Agent Live — n8n cloud + OpenRouter setup, LLM background
+- [x] 🟪 First n8n AI Agent Live — n8n cloud + OpenRouter setup, LLM background
 - [ ] 🟪 Foundations: Agentic AI and n8n
 - [ ] 🟨 Integrations with docs and email — Gmail
 - [ ] 🟨 Data and integrations — Slack, Google Sheets
@@ -60,5 +60,34 @@ docker run -it --rm --name n8n -p 5678:5678 \
 
 ## 🧠 Key Takeaways
 
-### Week 1 · Day 1
-- _Add as you go._
+### Week 1 · Day 1 — First n8n AI Agent Live ✅
+
+**What I built:** a stock data agent in n8n that answers questions about a given stock by calling a live data tool.
+
+```
+Chat Trigger ──▶ AI Agent ──▶ reply
+                   ├── Chat Model: OpenAI (the "brain" — decides what to do)
+                   ├── Tool: MarketStack (fetches live stock prices)
+                   └── Memory: keeps the conversation context between messages
+```
+
+- Asked, e.g., *"What's the latest price of AAPL?"*. The agent recognized it needed data, **called the MarketStack tool**, and answered using the returned data instead of guessing.
+- Adding **memory** lets follow-ups work (*"and how about MSFT?"*) because the agent remembers the earlier turns.
+
+**Concepts learned:**
+
+| Term | Definition |
+|---|---|
+| **LLM** | Large Language Model: a model trained on huge amounts of text to predict the next token. It powers text generation, reasoning and summarization (e.g., GPT, Claude, Gemini). |
+| **API** | Application Programming Interface: a defined way for programs to talk to each other. You send a request (e.g., a prompt or a stock symbol) and get a structured response back. |
+| **AI Agent** | An LLM in a loop with **tools** and **memory**. It can plan, decide which tool to call, act, look at the result, and repeat until the task is done. |
+| **Tool** | An external capability the agent can call, such as an API, a database or an app (here: MarketStack). |
+| **Memory** | Stored conversation history or context that the agent sees on each turn. |
+
+**Types of AI agents:**
+- **Simple / reactive:** responds to input with one LLM call and no tools.
+- **Tool-using:** calls APIs to fetch data or take actions (today's agent).
+- **Planning / multi-step:** breaks a goal into steps and executes them in sequence.
+- **Multi-agent:** several specialized agents coordinate, e.g., via sub-agents or MCP (Week 3).
+
+**Use cases:** customer support bots, research assistants, financial monitoring (e.g., portfolio rebalancing), sales lead generation, email/document automation, and voice receptionists.
