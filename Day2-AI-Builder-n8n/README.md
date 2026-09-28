@@ -1,6 +1,6 @@
 # Day 2 — AI Builder with n8n: Agents & Voice Agents · Notes
 
-> A 3-week track to become an agentic AI builder with n8n. In progress: **Week 1, Day 2**.
+> A 3-week track to become an agentic AI builder with n8n. In progress: **Week 1, Day 3**.
 
 📚 **Course:** [AI Builder: Create Agents, Voice Agents & Automations in n8n](https://www.udemy.com/course/ai-builder-with-n8n-create-agents-voice-agents/) (Udemy · Ed Donner) · Started Sept 25, 2026
 🔗 **Resources:** [Course resources page](https://edwarddonner.com/2026/01/04/ai-builder-with-n8n-create-agents-and-voice-agents/) · [Slides (Google Drive)](https://drive.google.com/drive/folders/1NIQD4azfKQkH3iWClcOoRHk6Yxu53VKq?usp=drive_link)
@@ -14,8 +14,8 @@ Legend: 🟪 Core skills · 🟨 Integrations · 🟦 Projects
 ### Week 1 — Automate with workflows in n8n cloud
 - [x] 🟪 First n8n AI Agent Live — n8n cloud + OpenRouter setup, LLM background
 - [x] 🟪 Foundations: Agentic AI and n8n
-- [ ] 🟨 Integrations with docs and email — Gmail
-- [ ] 🟨 Data and integrations — Slack, Google Sheets
+- [x] 🟨 Integrations with docs and email — Gmail
+- [ ] 🟨 Data and integrations — Slack, Google Sheets *(Sheets ✅, Slack pending)*
 - [ ] 🟦 **Project 1: Daily Portfolio Rebalancer** — autonomous agent monitors MarketStack prices and rebalances a Google Sheets portfolio with OpenAI ([sample sheet](https://docs.google.com/spreadsheets/d/1ON3WSXGeh6Qt9UVUduJiKU54KoEUMXVoeMOPflHu8tA/edit?usp=sharing))
 
 ### Week 2 — Accelerate with Voice Agents and RAG
@@ -120,3 +120,33 @@ User ──▶ Memory + prompt ──▶ LLM (reasoning) ──▶ tool call? �
 **Workflow vs. agent:**
 - **Workflow (chaining):** the developer fixes the steps in advance. It's predictable, cheap and easy to debug.
 - **Agent (loop + tools):** the LLM chooses the next step at runtime. It's more flexible but less predictable, so cap the iterations and watch costs.
+
+### Week 1 · Day 3 — Integrations: Google Sheets + Gmail ✅
+
+**What I built:** extended the stock agent so it works from a Google Sheet and emails an update.
+
+```
+Trigger ──▶ AI Agent ──▶ Gmail: send update email
+              ├── Chat Model: OpenAI
+              ├── Tool: Google Sheets (read) ── get the list of tickers
+              ├── Tool: MarketStack ─────────── fetch the latest price for each ticker
+              ├── Tool: Google Sheets (update) ─ write prices back to the sheet
+              └── Memory
+```
+
+- **Google Sheets as a data source and a target:** the agent reads the tickers listed in the sheet, looks up each price with MarketStack, and **updates** the price cells. It both reads and writes data.
+- **Gmail integration:** the agent sends an email update with the latest prices.
+- This is the base for **Project 1: Daily Portfolio Rebalancer**.
+
+**Concepts learned:**
+
+| Term | Definition |
+|---|---|
+| **Integration** | A connection between n8n and an external app (Sheets, Gmail, Slack) so a workflow or agent can read data from it or act in it. |
+| **Credentials / OAuth** | Authorizing n8n to access your Google account once. The token is stored in n8n's credentials, not in the workflow. |
+| **Read vs. write tools** | Read tools (look up rows) are low risk. Write tools (update rows, send email) change things in the real world, so test them on a copy first and consider a human approval step. |
+| **Row matching** | To update a row, the Sheets node needs a column to match on (e.g., `Ticker`) so each price lands on the correct row. |
+
+**Tips:**
+- Give each tool a clear **name and description**. The agent picks tools based on the description.
+- Check the **Executions** tab to confirm which rows were read and updated, and what the email contained.
