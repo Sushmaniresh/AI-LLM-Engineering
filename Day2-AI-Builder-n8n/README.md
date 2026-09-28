@@ -1,6 +1,6 @@
 # Day 2 — AI Builder with n8n: Agents & Voice Agents · Notes
 
-> A 3-week track to become an agentic AI builder with n8n. In progress: **Week 1, Day 1**.
+> A 3-week track to become an agentic AI builder with n8n. In progress: **Week 1, Day 2**.
 
 📚 **Course:** [AI Builder: Create Agents, Voice Agents & Automations in n8n](https://www.udemy.com/course/ai-builder-with-n8n-create-agents-voice-agents/) (Udemy · Ed Donner) · Started Sept 25, 2026
 🔗 **Resources:** [Course resources page](https://edwarddonner.com/2026/01/04/ai-builder-with-n8n-create-agents-and-voice-agents/) · [Slides (Google Drive)](https://drive.google.com/drive/folders/1NIQD4azfKQkH3iWClcOoRHk6Yxu53VKq?usp=drive_link)
@@ -13,7 +13,7 @@ Legend: 🟪 Core skills · 🟨 Integrations · 🟦 Projects
 
 ### Week 1 — Automate with workflows in n8n cloud
 - [x] 🟪 First n8n AI Agent Live — n8n cloud + OpenRouter setup, LLM background
-- [ ] 🟪 Foundations: Agentic AI and n8n
+- [x] 🟪 Foundations: Agentic AI and n8n
 - [ ] 🟨 Integrations with docs and email — Gmail
 - [ ] 🟨 Data and integrations — Slack, Google Sheets
 - [ ] 🟦 **Project 1: Daily Portfolio Rebalancer** — autonomous agent monitors MarketStack prices and rebalances a Google Sheets portfolio with OpenAI ([sample sheet](https://docs.google.com/spreadsheets/d/1ON3WSXGeh6Qt9UVUduJiKU54KoEUMXVoeMOPflHu8tA/edit?usp=sharing))
@@ -91,3 +91,32 @@ Chat Trigger ──▶ AI Agent ──▶ reply
 - **Multi-agent:** several specialized agents coordinate, e.g., via sub-agents or MCP (Week 3).
 
 **Use cases:** customer support bots, research assistants, financial monitoring (e.g., portfolio rebalancing), sales lead generation, email/document automation, and voice receptionists.
+
+### Week 1 · Day 2 — Foundations: Agentic AI and n8n ✅
+
+**What I built:** the same stock data agent from Day 1, with two additions:
+- **System message:** set in the AI Agent node's options. It's the standing instruction the LLM sees on every turn (its role, tone, rules, when to use the MarketStack tool), separate from the user's chat message.
+- **Checking executions:** used the **Executions** tab to inspect each run. It shows the input and output of every node, which tool calls the agent made and with what arguments, and where it failed. This is how you debug an agent and watch its loop step by step.
+
+**The five building blocks of an agent:**
+
+```
+            ┌──────────────── Loop ────────────────┐
+User ──▶ Memory + prompt ──▶ LLM (reasoning) ──▶ tool call? ──yes──▶ Tool ──▶ result
+                                   │                                          │
+                                   no ◀───────────── added to context ◀───────┘
+                                   ▼
+                                 answer
+```
+
+| Concept | What it means | In n8n |
+|---|---|---|
+| **Memory** | LLMs are **stateless**: every call starts from zero. "Memory" is the app re-sending past messages (or a summary) with each new prompt, so it uses context-window tokens. | Memory sub-node on the AI Agent (e.g., Simple Memory), with a context-window length setting |
+| **Reasoning** | The model working through a problem step by step before answering (chain-of-thought). Reasoning models do this internally: better on multi-step problems, but slower and more expensive. | Pick a reasoning-capable model in the Chat Model node |
+| **LLM chaining** | Splitting a task into several LLM calls where one call's output is the next call's input (e.g., extract → analyze → write). Each step is simpler and easier to test. | Several LLM / Basic LLM Chain nodes wired in sequence |
+| **Tools** | The LLM can't run code or call APIs itself. It returns a structured request (tool name + arguments), the framework runs the tool, and the result goes back to the LLM. | Tool sub-nodes on the AI Agent (e.g., MarketStack, HTTP Request) |
+| **Loop** | The agent repeats *think → act (call a tool) → observe the result* until it has enough to answer. The loop is what separates an **agent** from a fixed **workflow**. | Built into the AI Agent node (max iterations option) |
+
+**Workflow vs. agent:**
+- **Workflow (chaining):** the developer fixes the steps in advance. It's predictable, cheap and easy to debug.
+- **Agent (loop + tools):** the LLM chooses the next step at runtime. It's more flexible but less predictable, so cap the iterations and watch costs.
