@@ -1,6 +1,6 @@
-# Day 1 — LLM Token Optimization · Cheatsheet
+# LLM Token Optimization · Cheatsheet
 
-> A one-page summary of the Day 1 PDFs. The detail is in each PDF.
+> A one-page summary of the course PDFs. The detail is in each PDF.
 
 🎓 **Completed:** *LLM Token Optimization: Enterprise Cost & Performance* (Udemy · Learnsector LLP · 1.5 hrs) · Sept 24, 2026 · [Certificate PDF](Udemy-LLM-token-optimization.pdf) · [Verify](https://ude.my/UC-357e3191-e60a-4a5d-9ec9-0d6bece4d28d)
 

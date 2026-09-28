@@ -1,4 +1,4 @@
-# Day 2 — AI Builder with n8n: Agents & Voice Agents · Notes
+# AI Builder with n8n: Agents & Voice Agents · Notes
 
 > A 3-week track to become an agentic AI builder with n8n. In progress: **Week 1, Day 3**.
 
