@@ -123,20 +123,34 @@ User ──▶ Memory + prompt ──▶ LLM (reasoning) ──▶ tool call? �
 
 ### Week 1 · Day 3 — Integrations: Google Sheets + Gmail ✅
 
-**What I built:** extended the stock agent so it works from a Google Sheet and emails an update.
+**What I built:** two separate agents.
+
+**1. Stock agent + Google Sheets**
 
 ```
-Trigger ──▶ AI Agent ──▶ Gmail: send update email
-              ├── Chat Model: OpenAI
-              ├── Tool: Google Sheets (read) ── get the list of tickers
-              ├── Tool: MarketStack ─────────── fetch the latest price for each ticker
-              ├── Tool: Google Sheets (update) ─ write prices back to the sheet
-              └── Memory
+Chat Trigger ──▶ AI Agent ──▶ reply
+                   ├── Chat Model: OpenAI
+                   ├── Tool: Google Sheets (read) ── get the tickers listed in the sheet
+                   ├── Tool: MarketStack ─────────── fetch the latest price for each ticker
+                   ├── Tool: Google Sheets (update) ─ write the prices back to the sheet
+                   └── Memory
 ```
 
-- **Google Sheets as a data source and a target:** the agent reads the tickers listed in the sheet, looks up each price with MarketStack, and **updates** the price cells. It both reads and writes data.
-- **Gmail integration:** the agent sends an email update with the latest prices.
+- The agent reads the tickers from the sheet, looks up each price with MarketStack, and **updates** the price cells. It both reads and writes data.
 - This is the base for **Project 1: Daily Portfolio Rebalancer**.
+
+**2. Gmail assistant agent**
+
+```
+Chat Trigger ──▶ AI Agent ──▶ reply
+                   ├── Chat Model: OpenAI
+                   ├── Tool: Gmail (get messages) ── read the inbox
+                   ├── Tool: Gmail (create draft) ── LLM writes a reply as a draft
+                   └── Memory
+```
+
+- **Reads the inbox and flags what's important:** the LLM summarizes recent emails and says which ones need attention.
+- **Drafts emails:** the LLM writes replies and saves them as Gmail **drafts**, so nothing is sent until I review it. This is a simple human-in-the-loop step.
 
 **Concepts learned:**
 
@@ -144,9 +158,10 @@ Trigger ──▶ AI Agent ──▶ Gmail: send update email
 |---|---|
 | **Integration** | A connection between n8n and an external app (Sheets, Gmail, Slack) so a workflow or agent can read data from it or act in it. |
 | **Credentials / OAuth** | Authorizing n8n to access your Google account once. The token is stored in n8n's credentials, not in the workflow. |
-| **Read vs. write tools** | Read tools (look up rows) are low risk. Write tools (update rows, send email) change things in the real world, so test them on a copy first and consider a human approval step. |
+| **Read vs. write tools** | Read tools (look up rows, read emails) are low risk. Write tools (update rows, send email) change things in the real world, so test them on a copy first. Creating a **draft** instead of sending the email adds a human approval step. |
 | **Row matching** | To update a row, the Sheets node needs a column to match on (e.g., `Ticker`) so each price lands on the correct row. |
 
 **Tips:**
 - Give each tool a clear **name and description**. The agent picks tools based on the description.
-- Check the **Executions** tab to confirm which rows were read and updated, and what the email contained.
+- Check the **Executions** tab to confirm which rows were updated and which emails the agent read or drafted.
+- An inbox agent reads untrusted text: an email could contain instructions aimed at the LLM (prompt injection). Keep it to drafts, not sending.
