@@ -7,6 +7,7 @@ Notes and materials on LLM engineering.
 - **[LLM-Token-Optimization](LLM-Token-Optimization/)** ([cheatsheet](LLM-Token-Optimization/README.md)) — token economics, prompt compression, context compaction, semantic caching, and dynamic model routing, plus a pricing & ROI calculator reference.
 - **[AI-Builder-n8n](AI-Builder-n8n/)** ([notes](AI-Builder-n8n/README.md)) — 3-week track: n8n workflows → voice agents & RAG → multi-agent systems & MCP *(in progress: Week 1)*.
 - **[Agentic-AI-Frameworks](Agentic-AI-Frameworks/)** ([notes](Agentic-AI-Frameworks/README.md)): comparing n8n, LangChain/LangGraph, CrewAI and AutoGen, and how to choose between workflows, single agents and multi-agent systems.
+- **[Google-Cloud-AI-Infrastructure](Google-Cloud-AI-Infrastructure/)** ([notes](Google-Cloud-AI-Infrastructure/README.md)): Google Cloud Skills Boost path on AI Hypercomputer, GPUs/TPUs, Compute Engine and GKE for AI/ML workloads *(in progress)*.
 
 ## Certificates
 
