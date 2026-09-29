@@ -12,7 +12,7 @@
 | 1 | Introduction & Planning | [0:00:00](https://www.youtube.com/watch?v=Zy7EXDONlTY&t=0s) | ✅ |
 | 2 | Evolution from LLMs to Agentic AI | [0:08:33](https://www.youtube.com/watch?v=Zy7EXDONlTY&t=513s) | ✅ |
 | 3 | Agentic AI: Core Characteristics & Components | [0:41:26](https://www.youtube.com/watch?v=Zy7EXDONlTY&t=2486s) | 🟡 |
-| 4 | Asynchronous Programming for AI Agents | [1:33:18](https://www.youtube.com/watch?v=Zy7EXDONlTY&t=5598s) | ⏳ |
+| 4 | Asynchronous Programming for AI Agents ([notes](async-programming.md)) | [1:33:18](https://www.youtube.com/watch?v=Zy7EXDONlTY&t=5598s) | ⏳ |
 | 5 | Pydantic for AI Agents: Data Validation | [2:06:23](https://www.youtube.com/watch?v=Zy7EXDONlTY&t=7583s) | ⏳ |
 | 6 | End-to-End Single AI Agent System with LangChain | [3:27:08](https://www.youtube.com/watch?v=Zy7EXDONlTY&t=12428s) | ⏳ |
 | 7 | End-to-End Multi-Agent AI System with LangChain | [4:49:37](https://www.youtube.com/watch?v=Zy7EXDONlTY&t=17377s) | ⏳ |
