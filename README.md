@@ -9,6 +9,7 @@ Notes and materials on LLM engineering.
 - **[Agentic-AI-Frameworks](Agentic-AI-Frameworks/)** ([notes](Agentic-AI-Frameworks/README.md)): comparing n8n, LangChain/LangGraph, CrewAI and AutoGen, and how to choose between workflows, single agents and multi-agent systems.
 - **[Google-Cloud-AI-Infrastructure](Google-Cloud-AI-Infrastructure/)** ([notes](Google-Cloud-AI-Infrastructure/README.md)): Google Cloud Skills Boost path on AI Hypercomputer, GPUs/TPUs, Compute Engine and GKE for AI/ML workloads *(in progress)*.
 - **[vLLM](vLLM/)** ([notes](vLLM/README.md)): LLM inference and serving with vLLM, covering PagedAttention, continuous batching, the OpenAI-compatible server, quantization and distributed inference *(in progress)*.
+- **[Deploy-Production-Ready-Agents](Deploy-Production-Ready-Agents/)** ([notes](Deploy-Production-Ready-Agents/README.md)): Google Skills path (GEAR program) on deploying agents to Vertex AI Agent Engine and Cloud Run, with MCP and A2A for enterprise connectivity *(in progress)*.
 
 ## Certificates
 
